@@ -3,22 +3,23 @@ import css from './Statistic.module.css'
 
 
 export default function Statistics({title, stats}) {
+  const element = stats.map(statsItem => {
+    return (
+      <li
+        className={css.statsListItem}
+        key={statsItem.id}
+        style={{ backgroundColor: getColor() }}
+      >
+        <span className={css.label}>{statsItem.label}</span>
+        <span className={css.percentage}>{statsItem.percentage}%</span>
+      </li>
+    );
+  })
     // console.log(typeof stats);
     return (<div className={`${css.statistics} ${css.container}`}>
     {title && <h2 className={css.title}>{title}</h2>}
     <ul className={css.statList}>
-      {stats.map(statsItem => {
-        return (
-          <li
-            className={css.statsListItem}
-            key={statsItem.id}
-            style={{ backgroundColor: getColor() }}
-          >
-            <span className={css.label}>{statsItem.label}</span>
-            <span className={css.percentage}>{statsItem.percentage}%</span>
-          </li>
-        );
-      })}
+      {element}
     </ul>
   </div>)
 }

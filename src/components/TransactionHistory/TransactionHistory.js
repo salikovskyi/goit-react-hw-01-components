@@ -3,6 +3,14 @@ import css from "./TransactionHistory.module.css";
 
 
 export default function TransactionHistory({items}){
+  const element =  items.map(item => {
+    const { id, type, amount, currency } = item;
+  return (<tr key={id} className={css.list}>
+    <td className={css.item}>{type}</td>
+    <td className={css.item}>{amount}</td>
+    <td className={css.item}>{currency}</td>
+  </tr>)
+});
     return (
         <table className={css.transaction_history}>
   <thead>
@@ -12,17 +20,9 @@ export default function TransactionHistory({items}){
       <th className={css.th}>Currency</th>
     </tr>
   </thead>
-
  
   <tbody>
-        {items.map(item => {
-            const { id, type, amount, currency } = item;
-          return (<tr key={id} className={css.list}>
-            <td className={css.item}>{type}</td>
-            <td className={css.item}>{amount}</td>
-            <td className={css.item}>{currency}</td>
-          </tr>)
-})}
+       {element}
       </tbody>
     </table>
     );
